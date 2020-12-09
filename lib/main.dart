@@ -11,12 +11,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     final pushProvider = new PushNotificationsProvider();
     pushProvider.initNotificactions();
+    pushProvider.messagesStream.listen((data) { 
+      //print('Argument desde main: $argument');
+      //Navigator.pushNamed(context, 'message');
+      navigatorKey.currentState.pushNamed('message', arguments: data);
+    });
   }
   
 
@@ -24,6 +31,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
       title: 'Material App',
       initialRoute: 'home',
       routes: {

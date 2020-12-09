@@ -6,7 +6,8 @@ class PushNotificationsProvider {
   
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final _messageStreamController = StreamController<String>.broadcast();
-  
+  Stream<String> get messagesStream => _messageStreamController.stream;
+
   static Future<dynamic> onBackgroundMessage(Map<String, dynamic> message) async {
     if (message.containsKey('data')) {
       // Handle data message
@@ -36,20 +37,20 @@ class PushNotificationsProvider {
 
   Future<dynamic> onMessage(Map<String, dynamic> message) async {
     print('==== onMessage ====');
-    final argument = message['data']['food'];
+    final argument = message['data']['food'] ?? 'no-data';
     _messageStreamController.sink.add(argument);
   }
 
   Future<dynamic> onLaunch(Map<String, dynamic> message) async {
     print('==== onLaunch ====');
-    final argument = message['data']['food'];
+    final argument = message['data']['food'] ?? 'no-data';
     _messageStreamController.sink.add(argument);
     
   }
 
   Future<dynamic> onResume(Map<String, dynamic> message) async {
     print('==== onResume ====');
-    final argument = message['data']['food'];
+    final argument = message['data']['food'] ?? 'no-data';
     _messageStreamController.sink.add(argument);
   }
 
