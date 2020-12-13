@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:952802657229:android:ae43b3ced99c356790ba84",
+        "mobilesdk_app_id": "1:952802657229:android:4e4a2b40073906b990ba84",
         "android_client_info": {
           "package_name": "com.kevinsanchez.push_app"
         }
